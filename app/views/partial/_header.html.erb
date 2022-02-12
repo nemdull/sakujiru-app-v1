@@ -1,22 +1,43 @@
 <%# header %>
 <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
+  <%# タイトル　ヘッダー左　%>
   <div class="flex-1 px-2 mx-2">
-    <span class="text-lg font-bold">
-            Sakujiru?
-          </span>
-  </div> 
+    <%# POSTS LINK %>
+    <%= link_to "Sakujiru", posts_path, class: "text-lg font-bold" %>
+  </div>
+  <%# ナビゲーション　ヘッダー右 %>
   <div class="flex-none hidden px-2 mx-2 lg:flex">
+    <%# ナビゲーション　ヘッダー右　%>
     <div class="flex items-stretch">
-      <%# NEW POST LINK %>
-      <%= link_to "NEW POST", new_post_path, class: "btn btn-ghost btn-sm rounded-btn" %>
-      <%# POSTS LINK %>
-      <%= link_to "POSTS", posts_path, class: "btn btn-ghost btn-sm rounded-btn" %>
-      <%# USERS LINK %>
-      <%= link_to "USERS", users_path, class: "btn btn-ghost btn-sm rounded-btn" %>
-      <%# SING UP %>
-      <%= link_to "SIGN UP", new_user_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+      <%# ログイン中のヘッダー%>
+      <% if @current_user %>
+        <%# login user%>
+        <%= link_to("#{@current_user.name}さん","/users/#{@current_user.id}", {class: "btn btn-ghost btn-sm rounded-btn"}) %>
+        <%# NEW POST LINK %>
+        <%= link_to "新規投稿", new_post_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+        <%# POSTS LINK %>
+        <%= link_to "作字一覧", posts_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+        <%# USERS LINK %>
+        <%= link_to "クリエイター一覧", users_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+        <%# LOGUOUT LINK %>
+        <%= link_to "ログアウト", logout_path, class: "btn btn-ghost btn-sm rounded-btn", data: { turbo_method: :post } %>
+      <%# ログアウト中のヘッダー %>
+      <% else %>
+        <%# NEW POST LINK %>
+        <%= link_to "新規投稿", new_post_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+        <%# POSTS LINK %>
+        <%= link_to "作字一覧", posts_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+        <%# USERS LINK %>
+        <%= link_to "クリエイター一覧", users_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+        <%# SING UP %>
+        <%= link_to "新規登録", new_user_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+        <%# LOG IN %>
+        <%= link_to "ログイン", login_path, class: "btn btn-ghost btn-sm rounded-btn" %>
+      <% end %>
     </div>
-  </div> 
+  </div>
+
+  <%# ハンバーガー　ヘッダー右　%>
   <div class="flex-none">
     <button class="btn btn-square btn-ghost">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">           
@@ -24,4 +45,5 @@
       </svg>
     </button>
   </div>
+
 </div>
