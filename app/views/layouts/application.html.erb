@@ -12,8 +12,16 @@
   </head>
 
   <body>
+    <header>
+      <%# header %>
+      <%= render "partial/header" %>
+    </header>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
+    <footer>
+      <%# footer %>
+      <%= render "partial/footer" %>
+    </footer>
   </body>
 </html>
